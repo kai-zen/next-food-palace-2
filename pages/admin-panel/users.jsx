@@ -12,13 +12,10 @@ import {
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import APSingleUserRow from './APSingleUserRow';
 
-const APUsers = () => {
-  const loggedInUser = useSelector((state) => state.users.loggedInUser);
+const APUsers = ({ allUsers, loggedInUser }) => {
   const router = useRouter();
-  const allUsers = useSelector((state) => state.users.users);
 
   return (
     <Paper

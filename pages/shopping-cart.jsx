@@ -6,12 +6,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button, Chip, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
 import SingleRow from '../components/shopping-cart/SingleRow';
 
-export default function MyShoppingCart() {
+export default function MyShoppingCart({ allFoods }) {
   const [totalPrice, setTotalPrice] = useState(0);
-  let allFoods = useSelector((state) => state.foods.allFoods);
   allFoods = allFoods.filter((food) => {
     return !food.deleted;
   });

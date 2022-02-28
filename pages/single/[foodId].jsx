@@ -10,11 +10,10 @@ import {
 import React, { useState } from 'react';
 import SingleComment from '../../components/tabs/comments-tab/SingleComment';
 import { Close, Favorite, ShoppingCart } from '@mui/icons-material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toggleToCart, toggleToFavorites } from '../../features/foodsSlice';
 import AddCommentDialog from '../../components/single-food/AddCommentDialog';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 
 const SingleFoodPage = ({ food, thisFoodComments, loggedInUser }) => {
   const router = useRouter();
@@ -57,7 +56,7 @@ const SingleFoodPage = ({ food, thisFoodComments, loggedInUser }) => {
       }}
     >
       {food.deleted && router.push('/')}
-      <Image
+      <img
         width="80%"
         height="auto"
         src={`${food.image}`}

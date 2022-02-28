@@ -1,11 +1,9 @@
 import { Favorite } from '@mui/icons-material';
 import { Paper, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
 
 import CategoriesCardsGrid from '../components/tabs/categories-tab/CategoriesCardGrid';
 
-const Favorites = () => {
-  let allFoods = useSelector((state) => state.foods.allFoods);
+const Favorites = ({ allFoods }) => {
   allFoods = allFoods.filter((food) => {
     return !food.deleted;
   });

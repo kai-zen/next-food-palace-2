@@ -4,12 +4,10 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useSelector } from 'react-redux';
 import MySnack from '../components/login/MySnack';
 import FormikSignUp from '../components/login/FormikSignUp';
 
-export default function SignUp() {
-  const signUpSnacks = useSelector((state) => state.users.signUpSnacks);
+export default function SignUp({ signUpSnacks }) {
   return (
     <Container
       component="main"

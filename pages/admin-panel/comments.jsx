@@ -11,15 +11,10 @@ import {
   Typography,
 } from '@mui/material';
 import { useRouter } from 'next/router';
-import React from 'react';
-import { useSelector } from 'react-redux';
 import APSingleCommentRow from '../../components/admin-panel/APSingleCommentRow';
 
-const APComments = () => {
+const APComments = ({ loggedInUser, allComments }) => {
   const router = useRouter();
-  const loggedInUser = useSelector((state) => state.users.loggedInUser);
-  const allComments = useSelector((state) => state.comments.comments);
-  const reversed = [...allComments].reverse();
 
   return (
     <Paper
@@ -56,7 +51,7 @@ const APComments = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {reversed.map((comment) => {
+              {allComments.map((comment) => {
                 return (
                   <APSingleCommentRow comment={comment} key={comment.id} />
                 );

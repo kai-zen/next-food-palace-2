@@ -4,16 +4,13 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useSelector } from 'react-redux';
 import InfoAlert from '../components/login/InfoAlert';
 import MySnack from '../components/login/MySnack';
 import FormikSignIn from '../components/login/FormikSignIn';
 import { useRouter } from 'next/router';
 
-export default function SignIn() {
+export default function SignIn({ loggedInUser, signInSnacks }) {
   const router = useRouter();
-  const loggedInUser = useSelector((state) => state.users.loggedInUser);
-  const signInSnacks = useSelector((state) => state.users.signInSnacks);
 
   return (
     <Container

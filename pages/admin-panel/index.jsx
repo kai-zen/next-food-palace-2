@@ -1,9 +1,7 @@
 import { Button, Paper, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 
-const MainPanel = () => {
-  const loggedInUser = useSelector((state) => state.users.loggedInUser);
+const MainPanel = ({ loggedInUser }) => {
   const router = useRouter();
   return (
     <Paper

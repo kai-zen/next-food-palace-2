@@ -13,16 +13,13 @@ import {
 import { amber } from '@mui/material/colors';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import SearchInput from '../../tabs/serach-tab/SearchInput';
 import AddFoodDialog from '../../components/admin-panel/foods/AddFoodDialog';
 import APSingleFoodRow from '../../components/admin-panel/foods/APSingleFoodRow';
 import EditFoodDialog from '../../components/admin-panel/foods/EditFoodDialog';
 
-const APFoods = () => {
+const APFoods = ({ loggedInUser, allFoods }) => {
   const router = useRouter();
-  const loggedInUser = useSelector((state) => state.users.loggedInUser);
-  const allFoods = useSelector((state) => state.foods.allFoods);
   const [filteredFoods, setFilteredFoods] = useState(allFoods);
   const [open, setOpen] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
