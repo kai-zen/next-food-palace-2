@@ -1,9 +1,8 @@
 import { Favorite } from '@mui/icons-material';
 import { Paper, Typography } from '@mui/material';
-import React from 'react';
 import { useSelector } from 'react-redux';
 
-import CategoriesCardsGrid from '../tabs/categories-tab/CategoriesCardGrid';
+import CategoriesCardsGrid from '../components/tabs/categories-tab/CategoriesCardGrid';
 
 const Favorites = () => {
   let allFoods = useSelector((state) => state.foods.allFoods);

@@ -5,9 +5,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useSelector } from 'react-redux';
-import InfoAlert from './InfoAlert';
-import MySnack from './MySnack';
-import FormikSignIn from './FormikSignIn';
+import InfoAlert from '../components/login/InfoAlert';
+import MySnack from '../components/login/MySnack';
+import FormikSignIn from '../components/login/FormikSignIn';
 import { useRouter } from 'next/router';
 
 export default function SignIn() {

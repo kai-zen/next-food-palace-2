@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button, Chip, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
-import SingleRow from './SingleRow';
+import SingleRow from '../components/shopping-cart/SingleRow';
 
 export default function MyShoppingCart() {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -61,6 +61,7 @@ export default function MyShoppingCart() {
             return (
               <SingleRow
                 food={food}
+                key={food.id}
                 calculateTotalPrice={calculateTotalPrice}
               />
             );

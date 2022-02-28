@@ -1,4 +1,3 @@
-import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -6,8 +5,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useSelector } from 'react-redux';
-import MySnack from './MySnack';
-import FormikSignUp from './FormikSignUp';
+import MySnack from '../components/login/MySnack';
+import FormikSignUp from '../components/login/FormikSignUp';
 
 export default function SignUp() {
   const signUpSnacks = useSelector((state) => state.users.signUpSnacks);
@@ -23,8 +22,8 @@ export default function SignUp() {
         alignItems: 'center',
       }}
     >
-      {signUpSnacks.map((snack) => {
-        return <MySnack snack={snack} />;
+      {signUpSnacks.map((snack, index) => {
+        return <MySnack key={index} snack={snack} />;
       })}
       <CssBaseline />
       <Box

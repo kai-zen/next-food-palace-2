@@ -8,31 +8,19 @@ import {
   Snackbar,
 } from '@mui/material';
 import React, { useState } from 'react';
-import SingleComment from '../tabs/comments-tab/SingleComment';
+import SingleComment from '../../components/tabs/comments-tab/SingleComment';
 import { Close, Favorite, ShoppingCart } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleToCart, toggleToFavorites } from '../../features/foodsSlice';
-import AddCommentDialog from './AddCommentDialog';
+import AddCommentDialog from '../../components/single-food/AddCommentDialog';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-const SingleFoodPage = () => {
+const SingleFoodPage = ({ food, thisFoodComments, loggedInUser }) => {
   const router = useRouter();
   const foodId = router.query.foodId;
   const dispatch = useDispatch();
 
-  const allFoods = useSelector((state) => state.foods.allFoods);
-  let comments = useSelector((state) => state.comments.comments);
-  comments = comments.filter((comment) => {
-    return !comment.isDeleted;
-  });
-  const reversed = [...comments].reverse();
-  const loggedInUser = useSelector((state) => state.users.loggedInUser);
-
-  const food = allFoods[foodId];
-  const thisFoodComments = [...reversed].filter((comment) => {
-    return comment.foodId === food.id;
-  });
   const [heartColor, setHeartColor] = useState(
     food.isItInFav ? 'error' : 'action'
   );
@@ -70,12 +58,13 @@ const SingleFoodPage = () => {
     >
       {food.deleted && router.push('/')}
       <Image
+        width="80%"
+        height="auto"
         src={`${food.image}`}
         alt={food.name}
         style={{
           margin: '20px',
           borderRadius: '50%',
-          width: '80%',
           maxWidth: '450px',
           border: '2px solid black',
         }}
@@ -84,7 +73,7 @@ const SingleFoodPage = () => {
         {food.name}
       </Typography>
       <Typography variant="h6" color="text.secondary">
-        Price: {food.price} $
+        Price: {food.price}$
       </Typography>
       <Typography variant="h6" color="text.secondary">
         Order quantity: {food.orderQuantity}

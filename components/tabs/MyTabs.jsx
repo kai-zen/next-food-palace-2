@@ -22,19 +22,6 @@ const MyTabs = ({ activeTab }) => {
   const [currentActiveTab, setCurrentActiveTab] = useState(activeTab);
 
   const handleChange = (event, newValue) => {
-    switch (newValue) {
-      case 0:
-        router.push('/');
-        break;
-      case 1:
-        router.push('/categories');
-        break;
-      case 2:
-        router.push('/comments');
-        break;
-      default:
-        router.push('/');
-    }
     setCurrentActiveTab(newValue);
   };
 
