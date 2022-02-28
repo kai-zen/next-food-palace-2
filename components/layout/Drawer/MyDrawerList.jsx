@@ -167,8 +167,8 @@ const MyDrawerList = () => {
           <MaterialUISwitch
             defaultChecked={currentTheme === 'dark'}
             sx={{ m: 1, ml: 13, mt: 3 }}
-            onClick={() => {
-              dispatch(changeTheme());
+            onClick={(e) => {
+              e.target.value ? null : '';
             }}
           />
         }

@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux';
 import MyDrawer from './Drawer/MyDrawer';
 import MyAppBar from './MyAppBar';
 
-const MyLayout = ({ children }) => {
+const MyLayout = ({ children, currenttheme }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const themeMode = useSelector((state) => state.theme.currentTheme);
+
   const theme = createTheme({
     palette: {
-      mode: themeMode,
+      mode: currenttheme,
       primary: {
         main: amber[400],
       },

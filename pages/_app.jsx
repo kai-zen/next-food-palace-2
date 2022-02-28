@@ -4,10 +4,10 @@ import '../styles/globals.css';
 import '../styles/reset.css';
 import { store } from '../app/store';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, currenttheme }) {
   return (
     <Provider store={store}>
-      <MyLayout>
+      <MyLayout currenttheme={currenttheme}>
         <Component {...pageProps} />
       </MyLayout>
     </Provider>
