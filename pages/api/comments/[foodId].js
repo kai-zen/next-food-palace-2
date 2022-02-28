@@ -8,6 +8,6 @@ export default function handler(req, res) {
     comments = comments.filter((comment) => {
         return !comment.isDeleted;
     });
-    const reversed = [...comments].reverse();
+    const thisFoodComments = [...comments].reverse();
     res.status(200).json(thisFoodComments)
 }

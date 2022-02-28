@@ -2,7 +2,12 @@ import { Drawer } from '@mui/material';
 import React from 'react';
 import MyDrawerList from './MyDrawerList';
 
-const MyDrawer = ({ mobileOpen, handleDrawerToggle }) => {
+const MyDrawer = ({
+  mobileOpen,
+  handleDrawerToggle,
+  themeMode,
+  setThemeMode,
+}) => {
   return (
     <>
       <Drawer
@@ -33,7 +38,7 @@ const MyDrawer = ({ mobileOpen, handleDrawerToggle }) => {
         }}
         open
       >
-        <MyDrawerList />
+        <MyDrawerList themeMode={themeMode} setThemeMode={setThemeMode} />
       </Drawer>
     </>
   );

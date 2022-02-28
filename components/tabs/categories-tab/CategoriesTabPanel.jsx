@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import CategoriesCardsGrid from './CategoriesCardGrid';
 import ChooseInput from './ChooseInput';
 
-const CategoriesTabPanel = () => {
-  let allFoods = useSelector((state) => state.foods.allFoods);
+const CategoriesTabPanel = ({ allFoods }) => {
   allFoods = allFoods.filter((food) => {
     return !food.deleted;
   });

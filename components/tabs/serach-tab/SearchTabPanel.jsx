@@ -1,11 +1,9 @@
 import { Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import SearchInput from './SearchInput';
 import SearchSingleCard from './SingleCard';
 
-const SearchTabPanel = () => {
-  let allFoods = useSelector((state) => state.foods.allFoods);
+const SearchTabPanel = ({ allFoods }) => {
   allFoods = allFoods.filter((food) => {
     return !food.deleted;
   });

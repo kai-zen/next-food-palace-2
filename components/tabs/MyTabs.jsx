@@ -17,7 +17,7 @@ function a11yProps(index) {
   };
 }
 
-const MyTabs = ({ activeTab }) => {
+const MyTabs = ({ activeTab, allFoods }) => {
   const router = useRouter();
   const [currentActiveTab, setCurrentActiveTab] = useState(activeTab);
 
@@ -69,7 +69,7 @@ const MyTabs = ({ activeTab }) => {
           onChangeIndex={handleChangeIndex}
         >
           <div value={currentActiveTab} index={0} className="search-tab-panel">
-            <SearchTabPanel />
+            <SearchTabPanel allFoods={allFoods} />
           </div>
           <Paper
             value={currentActiveTab}
@@ -77,7 +77,7 @@ const MyTabs = ({ activeTab }) => {
             className="categories-tab-panel"
             square
           >
-            <CategoriesTabPanel />
+            <CategoriesTabPanel allFoods={allFoods} />
           </Paper>
           <Paper
             value={currentActiveTab}

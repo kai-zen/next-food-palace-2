@@ -1,17 +1,17 @@
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
 import { amber, red } from '@mui/material/colors';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import MyDrawer from './Drawer/MyDrawer';
 import MyAppBar from './MyAppBar';
 
-const MyLayout = ({ children, currenttheme }) => {
+const MyLayout = ({ children, currentTheme }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [themeMode, setThemeMode] = useState('dark');
 
   const theme = createTheme({
     palette: {
-      mode: currenttheme,
+      mode: themeMode,
       primary: {
         main: amber[400],
       },
@@ -37,6 +37,8 @@ const MyLayout = ({ children, currenttheme }) => {
         <MyDrawer
           mobileOpen={mobileOpen}
           handleDrawerToggle={handleDrawerToggle}
+          setThemeMode={setThemeMode}
+          themeMode={themeMode}
         />
         {children}
       </ThemeProvider>

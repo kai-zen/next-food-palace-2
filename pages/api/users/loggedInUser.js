@@ -1,5 +1,4 @@
 export default function handler(req, res) {
-    res.status(200).json({
-        loggedInUser: []
-    })
+    let loggedInUser = [];
+    res.status(200).json(loggedInUser)
 }

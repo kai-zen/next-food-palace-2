@@ -73,7 +73,7 @@ const MaterialUISwitch = styled(Switch)(() => ({
   },
 }));
 
-const MyDrawerList = () => {
+const MyDrawerList = ({ themeMode, setThemeMode }) => {
   const dispatch = useDispatch();
   const currentTheme = useSelector((state) => state.theme.currentTheme);
   return (
@@ -165,10 +165,14 @@ const MyDrawerList = () => {
       <FormControlLabel
         control={
           <MaterialUISwitch
-            defaultChecked={currentTheme === 'dark'}
+            defaultChecked={themeMode === 'dark'}
             sx={{ m: 1, ml: 13, mt: 3 }}
-            onClick={(e) => {
-              e.target.value ? null : '';
+            onClick={() => {
+              if (themeMode === 'dark') {
+                setThemeMode('light');
+              } else {
+                setThemeMode('dark');
+              }
             }}
           />
         }
