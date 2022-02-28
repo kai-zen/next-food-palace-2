@@ -2,10 +2,7 @@ import { Delete, Person } from '@mui/icons-material';
 import { IconButton, TableCell, TableRow } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  toggleAdminUser,
-  toggleDeleteUser,
-} from '../../../features/usersSlice';
+import { toggleAdminUser, toggleDeleteUser } from '../../features/usersSlice';
 
 const APSingleUserRow = ({ user }) => {
   const dispatch = useDispatch();

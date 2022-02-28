@@ -2,7 +2,7 @@ import { Delete } from '@mui/icons-material';
 import { IconButton, TableCell, TableRow } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { toggleDeleteComment } from '../../../features/commentsSlice';
+import { toggleDeleteComment } from '../../features/commentsSlice';
 
 const APSingleCommentRow = ({ comment }) => {
   const dispatch = useDispatch();
