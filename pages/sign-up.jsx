@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import MySnack from '../components/login/MySnack';
 import FormikSignUp from '../components/login/FormikSignUp';
 
-export default function SignUp({ signUpSnacks, allFoods }) {
+export default function SignUp({ signUpSnacks, users }) {
   return (
     <Container
       component="main"
@@ -45,7 +45,7 @@ export default function SignUp({ signUpSnacks, allFoods }) {
 }
 
 export async function getStaticProps() {
-  const response = await fetch('http://localhost:3000/api/users/signUpUsers');
+  const response = await fetch('http://localhost:3000/api/users/signUpSnacks');
   const signUpSnacks = await response.json();
   const response2 = await fetch('http://localhost:3000/api/users');
   const users = await response2.json();
