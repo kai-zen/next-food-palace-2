@@ -1,13 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import SingleComment from './SingleComment';
 
-const CommentsTabPanel = () => {
-  let comments = useSelector((state) => state.comments.comments);
-  comments = comments.filter((comment) => {
+const CommentsTabPanel = ({ comments }) => {
+  const currentComments = comments.filter((comment) => {
     return !comment.isDeleted;
   });
-  const reversed = [...comments].reverse();
+  const reversed = [...currentComments].reverse();
   return (
     <>
       {reversed.map((comment) => {

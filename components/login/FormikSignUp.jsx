@@ -3,12 +3,11 @@ import { Box } from '@mui/system';
 import { useFormik } from 'formik';
 import NextLink from 'next/link';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signUp } from '../../features/usersSlice';
 
-const FormikSignUp = () => {
+const FormikSignUp = ({ users }) => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
   const validate = (values) => {
     const errors = {};
     if (!values.email) {

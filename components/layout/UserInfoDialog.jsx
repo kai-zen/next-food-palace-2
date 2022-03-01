@@ -2,16 +2,15 @@ import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Dialog from '@mui/material/Dialog';
 import Typography from '@mui/material/Typography';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, DialogContent, IconButton } from '@mui/material';
 import { Favorite, ShoppingCart } from '@mui/icons-material';
 import { logout } from '../../features/usersSlice';
 import { useRouter } from 'next/router';
 
-export function UserInfoDialog({ open, setOpen }) {
+export function UserInfoDialog({ open, setOpen, loggedInUser }) {
   const dispatch = useDispatch();
   const router = useRouter();
-  const loggedInUser = useSelector((state) => state.users.loggedInUser);
 
   return (
     <Dialog

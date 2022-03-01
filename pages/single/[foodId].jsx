@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { toggleToCart, toggleToFavorites } from '../../features/foodsSlice';
 import AddCommentDialog from '../../components/single-food/AddCommentDialog';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const SingleFoodPage = ({ food, thisFoodComments, loggedInUser }) => {
   const router = useRouter();
@@ -56,18 +57,24 @@ const SingleFoodPage = ({ food, thisFoodComments, loggedInUser }) => {
       }}
     >
       {food.deleted && router.push('/')}
-      <img
-        width="80%"
-        height="auto"
-        src={`${food.image}`}
-        alt={food.name}
+      <div
         style={{
-          margin: '20px',
-          borderRadius: '50%',
-          maxWidth: '450px',
-          border: '2px solid black',
+          position: 'relative',
+          width: '80%',
+          display: 'flex',
+          alignItems: 'center',
+          paddingLeft: '40%',
         }}
-      />
+      >
+        <Image
+          width={450}
+          height={450}
+          src={`${food.image}`}
+          alt={food.name}
+          className="single-food-image"
+        />
+      </div>
+
       <Typography variant="h4" sx={{ m: 3 }}>
         {food.name}
       </Typography>
@@ -124,6 +131,8 @@ const SingleFoodPage = ({ food, thisFoodComments, loggedInUser }) => {
           open={open}
           foodId={food.id}
           chip={food.name}
+          loggedInUser={loggedInUser}
+          comments={comments}
         />
       </div>
       <Snackbar
@@ -163,5 +172,42 @@ const SingleFoodPage = ({ food, thisFoodComments, loggedInUser }) => {
     </Paper>
   );
 };
+
+export async function getStaticPaths() {
+  const response = await fetch('http://localhost:3000/api/foods');
+  const allFoods = await response.json();
+  const paths = allFoods.map((food) => {
+    return {
+      params: { foodId: `${food.id}` },
+    };
+  });
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const response1 = await fetch(
+    `http://localhost:3000/api/foods/${params.foodId}`
+  );
+  const food = await response1.json();
+  const response2 = await fetch(
+    `http://localhost:3000/api/comments/${params.foodId}`
+  );
+  const thisFoodComments = await response2.json();
+  const response3 = await fetch('http://localhost:3000/api/foods');
+  const loggedInUser = await response3.json();
+  const response4 = await fetch('http://localhost:3000/api/comments');
+  const comments = await response3.json();
+  return {
+    props: {
+      food,
+      thisFoodComments,
+      loggedInUser,
+      comments,
+    },
+  };
+}
 
 export default SingleFoodPage;

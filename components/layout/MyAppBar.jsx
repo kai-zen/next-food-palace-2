@@ -13,21 +13,22 @@ import {
   Typography,
 } from '@mui/material';
 import NextLink from 'next/link';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { UserInfoDialog } from './UserInfoDialog';
 import { useRouter } from 'next/router';
 
-const MyAppBar = ({ handleDrawerToggle }) => {
+const MyAppBar = ({ handleDrawerToggle, loggedInUser }) => {
   const router = useRouter();
-  const allFoods = useSelector((state) => state.foods.allFoods);
-  const loggedInUser = useSelector((state) => state.users.loggedInUser);
+  const [cartLength, setCartLength] = useState(0);
+  const [favLength, setFavLength] = useState(0);
 
-  const cart = [...allFoods].filter((food) => {
-    return food.isItInCart === true;
-  });
-  const favorites = [...allFoods].filter((food) => {
-    return food.isItInFav === true;
+  useEffect(async () => {
+    const response1 = await fetch('http://localhost:3000/api/foods/cartLength');
+    const cartL = await response1.json();
+    setCartLength(cartL);
+    const response2 = await fetch('http://localhost:3000/api/foods/favLength');
+    const favL = await response2.json();
+    setFavLength(favL);
   });
 
   const [open, setOpen] = useState(false);
@@ -65,7 +66,7 @@ const MyAppBar = ({ handleDrawerToggle }) => {
               aria-label="show 4 new mails"
               color="inherit"
             >
-              <Badge badgeContent={cart.length} color="error">
+              <Badge badgeContent={cartLength} color="error">
                 <ShoppingCart />
               </Badge>
             </IconButton>
@@ -78,13 +79,13 @@ const MyAppBar = ({ handleDrawerToggle }) => {
               aria-label="show 4 new mails"
               color="inherit"
             >
-              <Badge badgeContent={favorites.length} color="error">
+              <Badge badgeContent={favLength} color="error">
                 <Favorite />
               </Badge>
             </IconButton>
           </a>
         </NextLink>
-        {loggedInUser[0] ? (
+        {loggedInUser.length !== 0 ? (
           <>
             <IconButton
               size="large"
@@ -96,7 +97,11 @@ const MyAppBar = ({ handleDrawerToggle }) => {
             >
               <ManageAccounts fontSize="inherit" />
             </IconButton>
-            <UserInfoDialog open={open} setOpen={setOpen} />
+            <UserInfoDialog
+              open={open}
+              setOpen={setOpen}
+              loggedInUser={loggedInUser}
+            />
           </>
         ) : (
           <NextLink href="/sign-in">

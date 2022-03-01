@@ -8,7 +8,6 @@ import { Paper, Toolbar } from '@mui/material';
 import SearchTabPanel from './serach-tab/SearchTabPanel';
 import CategoriesTabPanel from './categories-tab/CategoriesTabPanel';
 import CommentsTabPanel from './comments-tab/CommentsTabPanel';
-import { useRouter } from 'next/router';
 
 function a11yProps(index) {
   return {
@@ -17,8 +16,7 @@ function a11yProps(index) {
   };
 }
 
-const MyTabs = ({ activeTab, allFoods }) => {
-  const router = useRouter();
+const MyTabs = ({ activeTab, allFoods, comments }) => {
   const [currentActiveTab, setCurrentActiveTab] = useState(activeTab);
 
   const handleChange = (event, newValue) => {
@@ -85,7 +83,7 @@ const MyTabs = ({ activeTab, allFoods }) => {
             className="comments-tab-panel"
             square
           >
-            <CommentsTabPanel />
+            <CommentsTabPanel comments={comments} />
           </Paper>
         </SwipeableViews>
       </Box>

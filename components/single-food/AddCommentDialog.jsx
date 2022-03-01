@@ -7,13 +7,19 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addComment } from '../../features/commentsSlice';
 
-const AddCommentDialog = ({ open, setOpen, foodId, chip, setOpenSnack }) => {
+const AddCommentDialog = ({
+  open,
+  setOpen,
+  foodId,
+  chip,
+  setOpenSnack,
+  loggedInUser,
+  comments,
+}) => {
   const dispatch = useDispatch();
-  const loggedInUser = useSelector((state) => state.users.loggedInUser);
-  const comments = useSelector((state) => state.comments.comments);
   const [rateInForm, setRateInForm] = useState(0);
   const [body, setBody] = useState('');
   const handleSubmit = (event) => {
