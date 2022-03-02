@@ -10,22 +10,22 @@ import {
 import React, { useState } from 'react';
 import SingleComment from '../../components/tabs/comments-tab/SingleComment';
 import { Close, Favorite, ShoppingCart } from '@mui/icons-material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleToCart, toggleToFavorites } from '../../features/foodsSlice';
 import AddCommentDialog from '../../components/single-food/AddCommentDialog';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-const SingleFoodPage = ({ food, thisFoodComments, loggedInUser }) => {
+const SingleFoodPage = ({ food, thisFoodComments, loggedInUser, comments }) => {
   const router = useRouter();
-  const foodId = router.query.foodId;
   const dispatch = useDispatch();
-
+  const favorites = useSelector((state) => state.foods.favorites);
+  const cart = useSelector((state) => state.foods.cart);
   const [heartColor, setHeartColor] = useState(
-    food.isItInFav ? 'error' : 'action'
+    favorites.find((f) => f.id === food.id) ? 'error' : 'action'
   );
   const [cartColor, setCartColor] = useState(
-    food.isItInCart ? 'success' : 'action'
+    cart.find((f) => f.id === food.id) ? 'success' : 'action'
   );
   const heartColorToggler = () => {
     if (heartColor === 'action') {
@@ -119,7 +119,7 @@ const SingleFoodPage = ({ food, thisFoodComments, loggedInUser }) => {
             if (loggedInUser[0]) {
               setOpen(true);
             } else {
-              navigate('/sign-in');
+              router.push('/sign-in');
             }
           }}
         >
@@ -199,7 +199,7 @@ export async function getStaticProps({ params }) {
   const response3 = await fetch('http://localhost:3000/api/foods');
   const loggedInUser = await response3.json();
   const response4 = await fetch('http://localhost:3000/api/comments');
-  const comments = await response3.json();
+  const comments = await response4.json();
   return {
     props: {
       food,

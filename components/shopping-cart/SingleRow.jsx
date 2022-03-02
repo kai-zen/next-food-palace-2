@@ -1,17 +1,18 @@
 import { Favorite, ShoppingCart } from '@mui/icons-material';
 import { IconButton, TableCell, TableRow, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   changeCartQuantity,
   toggleToCart,
   toggleToFavorites,
 } from '../../features/foodsSlice';
 
-const SingleRow = ({ food, calculateTotalPrice }) => {
+const SingleRow = ({ food, calculateTotalPrice, currentCart }) => {
+  const favorites = useSelector((state) => state.foods.favorites);
   const dispatch = useDispatch();
   const [heartColor, setHeartColor] = useState(
-    food.isItInFav ? 'error' : 'action'
+    favorites.find((f) => f.id === food.id) ? 'error' : 'action'
   );
   const heartColorToggler = () => {
     if (heartColor === 'action') {
@@ -43,9 +44,10 @@ const SingleRow = ({ food, calculateTotalPrice }) => {
           variant="standard"
           defaultValue={food.cartQuantity}
           onChange={(e) => {
+            let index = currentCart.findIndex((f) => f.id === food.id);
             dispatch(
               changeCartQuantity({
-                index: food.id,
+                index,
                 quantity: e.target.value,
               })
             );

@@ -5,10 +5,8 @@ export const allFoodsInfo = [{
         category: 'Pizza',
         orderQuantity: 125,
         rate: 4.5,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/0.jpg',
     },
     {
@@ -18,10 +16,8 @@ export const allFoodsInfo = [{
         category: 'Pizza',
         orderQuantity: 205,
         rate: 5,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/1.jpg',
     },
     {
@@ -31,10 +27,8 @@ export const allFoodsInfo = [{
         category: 'Pizza',
         orderQuantity: 177,
         rate: 4.5,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/2.jpg',
     },
     {
@@ -44,10 +38,8 @@ export const allFoodsInfo = [{
         category: 'Pizza',
         orderQuantity: 144,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/3.jpg',
     },
     {
@@ -57,10 +49,8 @@ export const allFoodsInfo = [{
         category: 'Pizza',
         orderQuantity: 103,
         rate: 3.5,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/4.jpg',
     },
     {
@@ -70,10 +60,8 @@ export const allFoodsInfo = [{
         category: 'Pizza',
         orderQuantity: 200,
         rate: 5,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/5.jpg',
     },
     {
@@ -83,10 +71,8 @@ export const allFoodsInfo = [{
         category: 'Pizza',
         orderQuantity: 163,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/6.jpg',
     },
     {
@@ -96,10 +82,8 @@ export const allFoodsInfo = [{
         category: 'Pasta',
         orderQuantity: 209,
         rate: 4.5,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/7.jpg',
     },
     {
@@ -109,10 +93,8 @@ export const allFoodsInfo = [{
         category: 'Pasta',
         orderQuantity: 113,
         rate: 5,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/8.jpg',
     },
     {
@@ -122,10 +104,8 @@ export const allFoodsInfo = [{
         category: 'Pasta',
         orderQuantity: 233,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/9.jpg',
     },
     {
@@ -135,10 +115,8 @@ export const allFoodsInfo = [{
         category: 'Pasta',
         orderQuantity: 89,
         rate: 3,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/10.jpg',
     },
     {
@@ -148,10 +126,8 @@ export const allFoodsInfo = [{
         category: 'Pasta',
         orderQuantity: 67,
         rate: 3.5,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/11.jpg',
     },
     {
@@ -161,10 +137,8 @@ export const allFoodsInfo = [{
         category: 'Burger',
         orderQuantity: 301,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/12.jpg',
     },
     {
@@ -174,10 +148,8 @@ export const allFoodsInfo = [{
         category: 'Burger',
         orderQuantity: 333,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/13.jpg',
     },
     {
@@ -187,10 +159,8 @@ export const allFoodsInfo = [{
         category: 'Burger',
         orderQuantity: 193,
         rate: 3.5,
-        isItInFav: false,
-        isItInCart: false,
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/14.jpg',
     },
     {
@@ -200,10 +170,9 @@ export const allFoodsInfo = [{
         category: 'Burger',
         orderQuantity: 163,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/15.jpg',
     },
     {
@@ -213,10 +182,9 @@ export const allFoodsInfo = [{
         category: 'Burger',
         orderQuantity: 203,
         rate: 3,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/16.jpg',
     },
     {
@@ -226,10 +194,9 @@ export const allFoodsInfo = [{
         category: 'Burger',
         orderQuantity: 267,
         rate: 4.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/17.jpg',
     },
     {
@@ -239,10 +206,9 @@ export const allFoodsInfo = [{
         category: 'Burger',
         orderQuantity: 117,
         rate: 2.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/18.jpg',
     },
     {
@@ -252,10 +218,9 @@ export const allFoodsInfo = [{
         category: 'Fried',
         orderQuantity: 197,
         rate: 3.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/19.jpg',
     },
     {
@@ -265,10 +230,9 @@ export const allFoodsInfo = [{
         category: 'Fried',
         orderQuantity: 214,
         rate: 3,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/20.jpg',
     },
     {
@@ -278,10 +242,9 @@ export const allFoodsInfo = [{
         category: 'Fried',
         orderQuantity: 188,
         rate: 3.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/21.jpg',
     },
     {
@@ -291,10 +254,9 @@ export const allFoodsInfo = [{
         category: 'Fried',
         orderQuantity: 142,
         rate: 4.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/22.jpg',
     },
     {
@@ -304,10 +266,9 @@ export const allFoodsInfo = [{
         category: 'Fried',
         orderQuantity: 137,
         rate: 2.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/23.jpg',
     },
     {
@@ -317,10 +278,9 @@ export const allFoodsInfo = [{
         category: 'Fried',
         orderQuantity: 212,
         rate: 3.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/24.jpg',
     },
     {
@@ -330,10 +290,9 @@ export const allFoodsInfo = [{
         category: 'Fried',
         orderQuantity: 92,
         rate: 4.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/25.jpg',
     },
     {
@@ -343,10 +302,9 @@ export const allFoodsInfo = [{
         category: 'Other',
         orderQuantity: 388,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/26.jpg',
     },
     {
@@ -356,10 +314,9 @@ export const allFoodsInfo = [{
         category: 'Other',
         orderQuantity: 423,
         rate: 3.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/27.jpg',
     },
     {
@@ -369,8 +326,7 @@ export const allFoodsInfo = [{
         category: 'Other',
         orderQuantity: 218,
         rate: 4.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
         image: '/Images/foods/28.jpg',
     },
@@ -381,10 +337,9 @@ export const allFoodsInfo = [{
         category: 'Other',
         orderQuantity: 195,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/29.jpg',
     },
     {
@@ -394,10 +349,9 @@ export const allFoodsInfo = [{
         category: 'Other',
         orderQuantity: 160,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/30.jpg',
     },
     {
@@ -407,10 +361,9 @@ export const allFoodsInfo = [{
         category: 'Other',
         orderQuantity: 130,
         rate: 5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/31.jpg',
     },
     {
@@ -420,10 +373,9 @@ export const allFoodsInfo = [{
         category: 'Other',
         orderQuantity: 180,
         rate: 3.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/32.jpg',
     },
     {
@@ -433,10 +385,9 @@ export const allFoodsInfo = [{
         category: 'Other',
         orderQuantity: 298,
         rate: 3.5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/33.jpg',
     },
     {
@@ -446,10 +397,9 @@ export const allFoodsInfo = [{
         category: 'Salad',
         orderQuantity: 148,
         rate: 5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/34.jpg',
     },
     {
@@ -459,10 +409,9 @@ export const allFoodsInfo = [{
         category: 'Salad',
         orderQuantity: 58,
         rate: 3,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/35.jpg',
     },
     {
@@ -472,10 +421,9 @@ export const allFoodsInfo = [{
         category: 'Salad',
         orderQuantity: 51,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/36.jpg',
     },
     {
@@ -485,10 +433,9 @@ export const allFoodsInfo = [{
         category: 'Salad',
         orderQuantity: 21,
         rate: 2,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/37.jpg',
     },
     {
@@ -498,10 +445,9 @@ export const allFoodsInfo = [{
         category: 'Drink',
         orderQuantity: 589,
         rate: 5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/38.jpg',
     },
     {
@@ -511,10 +457,9 @@ export const allFoodsInfo = [{
         category: 'Drink',
         orderQuantity: 679,
         rate: 5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/39.jpg',
     },
     {
@@ -524,10 +469,9 @@ export const allFoodsInfo = [{
         category: 'Drink',
         orderQuantity: 219,
         rate: 4,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/40.jpg',
     },
     {
@@ -537,10 +481,9 @@ export const allFoodsInfo = [{
         category: 'Drink',
         orderQuantity: 149,
         rate: 5,
-        isItInFav: false,
-        isItInCart: false,
+
         deleted: false,
-        cartQuantity: 1,
+
         image: '/Images/foods/41.jpg',
     },
 ]

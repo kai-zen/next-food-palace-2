@@ -13,23 +13,15 @@ import {
   Typography,
 } from '@mui/material';
 import NextLink from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { UserInfoDialog } from './UserInfoDialog';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 const MyAppBar = ({ handleDrawerToggle, loggedInUser }) => {
   const router = useRouter();
-  const [cartLength, setCartLength] = useState(0);
-  const [favLength, setFavLength] = useState(0);
-
-  useEffect(async () => {
-    const response1 = await fetch('http://localhost:3000/api/foods/cartLength');
-    const cartL = await response1.json();
-    setCartLength(cartL);
-    const response2 = await fetch('http://localhost:3000/api/foods/favLength');
-    const favL = await response2.json();
-    setFavLength(favL);
-  });
+  const cart = useSelector((state) => state.foods.cart);
+  const favorites = useSelector((state) => state.foods.favorites);
 
   const [open, setOpen] = useState(false);
 
@@ -66,7 +58,7 @@ const MyAppBar = ({ handleDrawerToggle, loggedInUser }) => {
               aria-label="show 4 new mails"
               color="inherit"
             >
-              <Badge badgeContent={cartLength} color="error">
+              <Badge badgeContent={cart.length} color="error">
                 <ShoppingCart />
               </Badge>
             </IconButton>
@@ -79,7 +71,7 @@ const MyAppBar = ({ handleDrawerToggle, loggedInUser }) => {
               aria-label="show 4 new mails"
               color="inherit"
             >
-              <Badge badgeContent={favLength} color="error">
+              <Badge badgeContent={favorites.length} color="error">
                 <Favorite />
               </Badge>
             </IconButton>

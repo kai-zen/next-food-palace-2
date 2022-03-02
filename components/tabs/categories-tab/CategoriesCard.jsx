@@ -5,18 +5,20 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { IconButton, Rating } from '@mui/material';
 import { Favorite, Info, ShoppingCart } from '@mui/icons-material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleToCart, toggleToFavorites } from '../../../features/foodsSlice';
 import { useRouter } from 'next/router';
 
 export default function SingleCategoriesCard({ food }) {
   let router = useRouter();
   const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.foods.favorites);
+  const cart = useSelector((state) => state.foods.cart);
   const [heartColor, setHeartColor] = useState(
-    food.isItInFav ? 'error' : 'action'
+    favorites.find((f) => f.id === food.id) ? 'error' : 'action'
   );
   const [cartColor, setCartColor] = useState(
-    food.isItInCart ? 'success' : 'action'
+    cart.find((f) => f.id === food.id) ? 'success' : 'action'
   );
   const heartColorToggler = () => {
     if (heartColor === 'action') {

@@ -1,53 +1,47 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { allFoodsInfo } from "../allFoodsInfo";
 
 const initialState = {
-    allFoods: allFoodsInfo,
+    cart: [],
+    favorites: [],
 }
+
 export const foodsSlice = createSlice({
     name: 'foods',
     initialState,
     reducers: {
         toggleToFavorites: (state, payload) => {
-            if (!state.allFoods[payload.payload.id].isItInFav) {
-                state.allFoods[payload.payload.id].isItInFav = true;
+            let isItInFav = state.favorites.find(food => {
+                return food.id === payload.payload.id
+            });
+            if (isItInFav) {
+                state.favorites = state.favorites.filter(f => {
+                    return f.id !== payload.payload.id
+                })
             } else {
-                state.allFoods[payload.payload.id].isItInFav = false;
+                state.favorites.push(payload.payload)
             }
-
         },
         toggleToCart: (state, payload) => {
-            if (!state.allFoods[payload.payload.id].isItInCart) {
-                state.allFoods[payload.payload.id].isItInCart = true;
+            let isItInCart = state.cart.find(food => {
+                return food.id === payload.payload.id
+            });
+            if (isItInCart) {
+                state.cart = state.cart.filter(f => {
+                    return f.id !== payload.payload.id
+                })
             } else {
-                state.allFoods[payload.payload.id].isItInCart = false;
+                let food = {
+                    ...payload.payload,
+                    cartQuantity: 1
+                };
+                state.cart.push(food)
             }
-
         },
         changeCartQuantity: (state, payload) => {
-            state.allFoods[payload.payload.index].cartQuantity = payload.payload.quantity;
-
+            state.cart[payload.payload.index].cartQuantity = payload.payload.quantity;
         },
-        addFood: (state, payload) => {
-            state.allFoods.push(payload.payload);
-
-        },
-        toggleDeleteFood: (state, payload) => {
-            const index = state.allFoods.findIndex(food => {
-                return food.id === payload.payload.id
-            });
-            state.allFoods[index].deleted = !state.allFoods[index].deleted;
-
-        },
-        editFood: (state, payload) => {
-            const index = state.allFoods.findIndex(food => {
-                return food.id === payload.payload.id
-            });
-            state.allFoods[index] = payload.payload;
-
-        }
     }
 })
 
 export default foodsSlice.reducer;
-export const { toggleToFavorites, toggleToCart, changeCartQuantity, addFood, toggleDeleteFood, editFood } = foodsSlice.actions;
+export const { toggleToFavorites, toggleToCart, changeCartQuantity } = foodsSlice.actions;

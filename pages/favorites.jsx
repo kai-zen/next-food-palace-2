@@ -1,15 +1,12 @@
 import { Favorite } from '@mui/icons-material';
 import { Paper, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 import CategoriesCardsGrid from '../components/tabs/categories-tab/CategoriesCardGrid';
 
-const Favorites = ({ allFoods }) => {
-  allFoods = allFoods.filter((food) => {
-    return !food.deleted;
-  });
-  const favorites = [...allFoods].filter((food) => {
-    return food.isItInFav === true;
-  });
+const Favorites = () => {
+  let favorites = useSelector((state) => state.foods.favorites);
+
   return (
     <Paper
       sx={{
@@ -42,15 +39,5 @@ const Favorites = ({ allFoods }) => {
     </Paper>
   );
 };
-
-export async function getStaticProps() {
-  const response = await fetch('http://localhost:3000/api/foods');
-  const data = await response.json();
-  return {
-    props: {
-      allFoods: data,
-    },
-  };
-}
 
 export default Favorites;

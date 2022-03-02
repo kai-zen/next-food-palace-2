@@ -21,10 +21,9 @@ import {
 } from '@mui/material';
 import React from 'react';
 import NextLink from 'next/link';
-import { Link as RRDLink } from 'next';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeTheme } from '../../../features/themeSlice';
+import { useDispatch } from 'react-redux';
 import { logout } from '../../../features/usersSlice';
+import Cookies from 'js-cookie';
 
 const MaterialUISwitch = styled(Switch)(() => ({
   width: 62,
@@ -75,7 +74,6 @@ const MaterialUISwitch = styled(Switch)(() => ({
 
 const MyDrawerList = ({ themeMode, setThemeMode }) => {
   const dispatch = useDispatch();
-  const currentTheme = useSelector((state) => state.theme.currentTheme);
   return (
     <div>
       <Toolbar />
@@ -165,13 +163,17 @@ const MyDrawerList = ({ themeMode, setThemeMode }) => {
       <FormControlLabel
         control={
           <MaterialUISwitch
-            defaultChecked={themeMode === 'dark'}
+            defaultChecked={Cookies.get('themeMode') === 'dark'}
             sx={{ m: 1, ml: 13, mt: 3 }}
-            onClick={() => {
+            onClick={(e) => {
               if (themeMode === 'dark') {
+                Cookies.set('themeMode', 'light');
                 setThemeMode('light');
+                e.target.defaultChecked = false;
               } else {
+                Cookies.set('themeMode', 'dark');
                 setThemeMode('dark');
+                e.target.defaultChecked = true;
               }
             }}
           />

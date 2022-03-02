@@ -4,19 +4,19 @@ import { amber, red } from '@mui/material/colors';
 import React, { useEffect, useState } from 'react';
 import MyDrawer from './Drawer/MyDrawer';
 import MyAppBar from './MyAppBar';
+import Cookies from 'js-cookie';
 
 const MyLayout = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [themeMode, setThemeMode] = useState('dark');
-  const [loggedInUser, setLoggedInUser] = useState([]);
+  const [themeMode, setThemeMode] = useState();
+  const [loggedInUser] = useState([]);
 
-  useEffect(async () => {
-    const response = await fetch(
-      'http://localhost:3000/api/users/loggedInUser'
-    );
-    const data = await response.json();
-    setLoggedInUser(data);
-  });
+  useEffect(() => {
+    const themeModeCookie = Cookies.get('themeMode');
+    if (themeModeCookie) {
+      setThemeMode(themeModeCookie);
+    } else setThemeMode('light');
+  }, []);
 
   const theme = createTheme({
     palette: {

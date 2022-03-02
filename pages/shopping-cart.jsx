@@ -7,15 +7,12 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button, Chip, Typography } from '@mui/material';
 import SingleRow from '../components/shopping-cart/SingleRow';
+import { useSelector } from 'react-redux';
 
-export default function MyShoppingCart({ allFoods }) {
+export default function MyShoppingCart() {
   const [totalPrice, setTotalPrice] = useState(0);
-  allFoods = allFoods.filter((food) => {
-    return !food.deleted;
-  });
-  const currentCart = [...allFoods].filter((food) => {
-    return food.isItInCart === true;
-  });
+  let currentCart = useSelector((state) => state.foods.cart);
+
   const calculateTotalPrice = () => {
     let currentTotalPrice = 0;
     for (const food of currentCart) {
@@ -58,6 +55,7 @@ export default function MyShoppingCart({ allFoods }) {
           {currentCart.map((food) => {
             return (
               <SingleRow
+                currentCart={currentCart}
                 food={food}
                 key={food.id}
                 calculateTotalPrice={calculateTotalPrice}
@@ -88,14 +86,4 @@ export default function MyShoppingCart({ allFoods }) {
       </Button>
     </Paper>
   );
-}
-
-export async function getStaticProps() {
-  const response = await fetch('http://localhost:3000/api/foods');
-  const data = await response.json();
-  return {
-    props: {
-      allFoods: data,
-    },
-  };
 }

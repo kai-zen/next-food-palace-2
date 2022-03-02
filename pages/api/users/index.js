@@ -1,5 +1,5 @@
 import { allUsersInfo } from "../../../allUsersInfo";
 
 export default function handler(req, res) {
-    res.status(200).json(allUsersInfo)
+    res.status(200).json(allUsersInfo);
 }

@@ -38,13 +38,16 @@ const FormikSignIn = () => {
     },
     validate,
     onSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        dispatch(
-          signIn({
+      setTimeout(async () => {
+        await fetch('/api/users/loggedInUser', {
+          method: 'POST',
+          body: JSON.stringify({
             email: values.email,
             password: values.password,
-          })
-        );
+          }),
+        });
+        // const data = await response.json();
+        // alert(data.type);
         setSubmitting(false);
       }, 400);
     },
