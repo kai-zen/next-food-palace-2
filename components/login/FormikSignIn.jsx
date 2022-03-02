@@ -7,14 +7,12 @@ import {
   LinearProgress,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import axios from 'axios';
 import { useFormik } from 'formik';
 import NextLink from 'next/link';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { signIn } from '../../features/usersSlice';
 
 const FormikSignIn = () => {
-  const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
     if (!values.email) {
@@ -39,15 +37,15 @@ const FormikSignIn = () => {
     validate,
     onSubmit: (values, { setSubmitting }) => {
       setTimeout(async () => {
-        await fetch('/api/users/loggedInUser', {
-          method: 'POST',
-          body: JSON.stringify({
+        try {
+          const { data } = await axios.post('/api/users/loggedInUser', {
             email: values.email,
             password: values.password,
-          }),
-        });
-        // const data = await response.json();
-        // alert(data.type);
+          });
+          alert('succss login');
+        } catch (err) {
+          alert(err.response.data ? err.response.data.message : err.message);
+        }
         setSubmitting(false);
       }, 400);
     },
