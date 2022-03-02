@@ -7,11 +7,8 @@ import Container from '@mui/material/Container';
 import InfoAlert from '../components/login/InfoAlert';
 import MySnack from '../components/login/MySnack';
 import FormikSignIn from '../components/login/FormikSignIn';
-import { useRouter } from 'next/router';
 
-export default function SignIn({ loggedInUser, signInSnacks }) {
-  const router = useRouter();
-
+export default function SignIn({ signInSnacks }) {
   return (
     <Container
       component="main"
@@ -28,7 +25,6 @@ export default function SignIn({ loggedInUser, signInSnacks }) {
         return <MySnack key={index} snack={snack} />;
       })}
       <InfoAlert />
-      {loggedInUser[0] && router.push('/')}
       <CssBaseline />
       <Box
         sx={{
@@ -51,13 +47,10 @@ export default function SignIn({ loggedInUser, signInSnacks }) {
 }
 
 export async function getStaticProps() {
-  const response1 = await fetch('http://localhost:3000/api/users/loggedInUser');
-  const loggedInUser = await response1.json();
   const response2 = await fetch('http://localhost:3000/api/users/signInSnacks');
   const signInSnacks = await response2.json();
   return {
     props: {
-      loggedInUser,
       signInSnacks,
     },
   };

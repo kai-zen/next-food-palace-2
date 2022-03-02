@@ -10,9 +10,11 @@ import { Box } from '@mui/system';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import NextLink from 'next/link';
+// import { useRouter } from 'next/router';
 import React from 'react';
 
 const FormikSignIn = () => {
+  // const router = useRouter();
   const validate = (values) => {
     const errors = {};
     if (!values.email) {
@@ -37,15 +39,15 @@ const FormikSignIn = () => {
     validate,
     onSubmit: (values, { setSubmitting }) => {
       setTimeout(async () => {
-        try {
-          const { data } = await axios.post('/api/users/loggedInUser', {
+        const response = await axios.post(
+          'http://localhost:3000/api/users/loggedInUser',
+          {
             email: values.email,
-            password: values.password,
-          });
-          alert('succss login');
-        } catch (err) {
-          alert(err.response.data ? err.response.data.message : err.message);
-        }
+            password: `${values.password}`,
+          }
+        );
+        console.log(response);
+        // router.push('/');
         setSubmitting(false);
       }, 400);
     },

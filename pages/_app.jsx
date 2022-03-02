@@ -21,14 +21,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export async function getStaticProps() {
-  const response = await fetch('/api/theme');
-  const data = await response.json();
-  return {
-    props: {
-      currentTheme: 'dark',
-    },
-  };
-}
-
 export default MyApp;

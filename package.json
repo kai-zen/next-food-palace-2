@@ -20,7 +20,6 @@
     "js-cookie": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "next": "12.1.0",
-    "next-connect": "^0.12.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "^7.2.6",
