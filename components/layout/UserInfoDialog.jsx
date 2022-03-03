@@ -29,18 +29,18 @@ export function UserInfoDialog({ open, setOpen, loggedInUser }) {
         }}
       >
         <Avatar sx={{ width: 66, height: 66, mb: 1, bgcolor: 'orange' }}>
-          {loggedInUser[0].firstName[0]}
+          {loggedInUser.firstName[0]}
         </Avatar>
         <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 0 }}>
-          {`${loggedInUser[0].firstName} ${loggedInUser[0].lastName}`}
+          {`${loggedInUser.firstName} ${loggedInUser.lastName}`}
         </Typography>
         <Typography variant="h6" color="text.secondary">
-          {loggedInUser[0].email}
+          {loggedInUser.email}
         </Typography>
         <div style={{ margin: '10px 10px 0' }}>
           <IconButton
             onClick={() => {
-              navigate('/favorites');
+              router.push('/favorites');
               setOpen(false);
             }}
             size="large"
@@ -49,7 +49,7 @@ export function UserInfoDialog({ open, setOpen, loggedInUser }) {
           </IconButton>
           <IconButton
             onClick={() => {
-              navigate('/shopping-cart');
+              router.push('/shopping-cart');
               setOpen(false);
             }}
             size="large"
@@ -68,11 +68,11 @@ export function UserInfoDialog({ open, setOpen, loggedInUser }) {
         >
           Logout
         </Button>
-        {loggedInUser[0].isAdmin && (
+        {loggedInUser.isAdmin && (
           <Button
             variant="contained"
             onClick={() => {
-              navigate('/admin-panel');
+              router.push('/admin-panel');
               setOpen(false);
             }}
             fullWidth

@@ -9,7 +9,6 @@ import Cookies from 'js-cookie';
 const MyLayout = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [themeMode, setThemeMode] = useState();
-  const [loggedInUser] = useState([]);
 
   useEffect(() => {
     const themeModeCookie = Cookies.get('themeMode');
@@ -41,10 +40,7 @@ const MyLayout = ({ children }) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <MyAppBar
-          handleDrawerToggle={handleDrawerToggle}
-          loggedInUser={loggedInUser}
-        />
+        <MyAppBar handleDrawerToggle={handleDrawerToggle} />
         <MyDrawer
           mobileOpen={mobileOpen}
           handleDrawerToggle={handleDrawerToggle}

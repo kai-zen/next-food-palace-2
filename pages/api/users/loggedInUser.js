@@ -12,7 +12,8 @@ export default function handler(req, res) {
             res.status(201).json({
                 token,
                 id: user[0].id,
-                name: user[0].name,
+                firstName: user[0].firstName,
+                lastName: user[0].lastName,
                 email: user[0].email,
                 isAdmin: user[0].isAdmin,
             });

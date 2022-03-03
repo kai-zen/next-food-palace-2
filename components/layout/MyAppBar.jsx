@@ -18,8 +18,9 @@ import { UserInfoDialog } from './UserInfoDialog';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
-const MyAppBar = ({ handleDrawerToggle, loggedInUser }) => {
+const MyAppBar = ({ handleDrawerToggle }) => {
   const router = useRouter();
+  const loggedInUser = useSelector((state) => state.users.loggedInUser);
   const cart = useSelector((state) => state.foods.cart);
   const favorites = useSelector((state) => state.foods.favorites);
 
@@ -77,7 +78,7 @@ const MyAppBar = ({ handleDrawerToggle, loggedInUser }) => {
             </IconButton>
           </a>
         </NextLink>
-        {loggedInUser.length !== 0 ? (
+        {Object.keys(loggedInUser).length !== 0 ? (
           <>
             <IconButton
               size="large"

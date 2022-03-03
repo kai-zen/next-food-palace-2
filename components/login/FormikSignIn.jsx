@@ -10,11 +10,14 @@ import { Box } from '@mui/system';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import NextLink from 'next/link';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../features/usersSlice';
 
 const FormikSignIn = () => {
-  // const router = useRouter();
+  const dispatch = useDispatch();
+  const router = useRouter();
   const validate = (values) => {
     const errors = {};
     if (!values.email) {
@@ -46,8 +49,8 @@ const FormikSignIn = () => {
             password: `${values.password}`,
           }
         );
-        console.log(response);
-        // router.push('/');
+        dispatch(signIn(response.data));
+        router.push('/');
         setSubmitting(false);
       }, 400);
     },
