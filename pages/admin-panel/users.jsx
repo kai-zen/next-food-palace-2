@@ -11,14 +11,19 @@ import {
   Typography,
 } from '@mui/material';
 import { useRouter } from 'next/router';
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { allUsersInfo } from '../../allUsersInfo';
 import APSingleUserRow from '../../components/admin-panel/APSingleUserRow';
 
-const APUsers = ({ allUsers }) => {
+const APUsers = () => {
   const router = useRouter();
+  const [allUsers, setAllUsers] = useState(allUsersInfo);
   const loggedInUser = useSelector((state) => state.users.loggedInUser);
 
+  // useEffect(() => {
+  //   setAllUsers[allUsersInfo];
+  // }, [allUsersInfo]);
   return (
     <Paper
       sx={{
@@ -74,15 +79,5 @@ const APUsers = ({ allUsers }) => {
     </Paper>
   );
 };
-
-export async function getStaticProps() {
-  const response = await fetch('http://localhost:3000/api/users');
-  const allUsers = await response.json();
-  return {
-    props: {
-      allUsers,
-    },
-  };
-}
 
 export default APUsers;

@@ -1,13 +1,11 @@
 import { Button, Grid, LinearProgress, Link, TextField } from '@mui/material';
 import { Box } from '@mui/system';
+import axios from 'axios';
 import { useFormik } from 'formik';
 import NextLink from 'next/link';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { signUp } from '../../features/usersSlice';
 
 const FormikSignUp = ({ users }) => {
-  const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
     if (!values.email) {
@@ -38,18 +36,21 @@ const FormikSignUp = ({ users }) => {
     },
     validate,
     onSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        dispatch(
-          signUp({
+      setTimeout(async () => {
+        try {
+          const response = await axios.post('http://localhost:3000/api/users', {
             id: users.length,
             firstName: values.firstName,
             lastName: values.lastName,
             email: values.email,
             password: values.password,
-            isAdmin: false,
-            isDeleted: false,
-          })
-        );
+          });
+          console.log(response);
+          setSubmitting(false);
+        } catch (err) {
+          alert(err.response.data ? err.response.data.message : err.message);
+          setSubmitting(false);
+        }
         setSubmitting(false);
       }, 400);
     },

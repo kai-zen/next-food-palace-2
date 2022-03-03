@@ -1,5 +1,14 @@
-import { allFoodsInfo } from "../../../allFoodsInfo";
+import nc from 'next-connect';
+import db from "../../../app/db";
+import Food from "../../../app/models/food";
 
-export default function handler(req, res) {
-    res.status(200).json(allFoodsInfo)
-}
+const handler = nc();
+
+handler.get(async(req, res) => {
+    await db.connect();
+    const foods = await Food.find({});
+    await db.disconnect();
+    res.send(foods);
+});
+
+export default handler;

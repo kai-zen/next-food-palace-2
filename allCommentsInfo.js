@@ -1,9 +1,9 @@
-export const allComments = [{
+export const allCommentsInfo = [{
     id: 0,
     foodId: 0,
     author: 'Robert',
     body: 'when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ',
-    chip: 'Margharitha pizza',
+    chip: 'Margheritha pizza',
     rate: 4.5,
     isDeleted: false
 }, {

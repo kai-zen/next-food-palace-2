@@ -11,7 +11,6 @@ export const usersSlice = createSlice({
     reducers: {
         signIn: (state, payload) => {
             state.loggedInUser = payload.payload;
-
         },
         logout: (state) => {
             Cookies.remove('loggedInUser');

@@ -5,10 +5,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import InfoAlert from '../components/login/InfoAlert';
-import MySnack from '../components/login/MySnack';
 import FormikSignIn from '../components/login/FormikSignIn';
 
-export default function SignIn({ signInSnacks }) {
+export default function SignIn() {
   return (
     <Container
       component="main"
@@ -21,9 +20,6 @@ export default function SignIn({ signInSnacks }) {
         alignItems: 'center',
       }}
     >
-      {signInSnacks.map((snack, index) => {
-        return <MySnack key={index} snack={snack} />;
-      })}
       <InfoAlert />
       <CssBaseline />
       <Box
@@ -44,14 +40,4 @@ export default function SignIn({ signInSnacks }) {
       </Box>
     </Container>
   );
-}
-
-export async function getStaticProps() {
-  const response2 = await fetch('http://localhost:3000/api/users/signInSnacks');
-  const signInSnacks = await response2.json();
-  return {
-    props: {
-      signInSnacks,
-    },
-  };
 }

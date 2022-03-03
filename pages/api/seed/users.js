@@ -1,14 +1,16 @@
 import nc from 'next-connect';
-import db from "../../../app/db";
+import { allUsersInfo } from '../../../allUsersInfo';
+import db from '../../../app/db';
 import User from '../../../app/models/user';
 
 const handler = nc();
 
 handler.get(async(req, res) => {
     await db.connect();
-    const users = await User.find({});
+    await User.deleteMany();
+    await User.insertMany(allUsersInfo);
     await db.disconnect();
-    res.send(users);
+    res.send({ message: 'seeded successfully' });
 });
 
 export default handler;

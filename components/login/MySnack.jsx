@@ -1,18 +1,12 @@
 import { Close } from '@mui/icons-material';
 import { Alert, IconButton, Snackbar } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { emptySignInSnack, emptySignUpSnack } from '../../features/usersSlice';
 
 const MySnack = ({ snack, open, setOpen }) => {
-  const dispatch = useDispatch();
-
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
-    dispatch(emptySignUpSnack());
-    dispatch(emptySignInSnack());
   };
   return (
     <Snackbar

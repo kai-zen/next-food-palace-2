@@ -4,10 +4,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import MySnack from '../components/login/MySnack';
 import FormikSignUp from '../components/login/FormikSignUp';
 
-export default function SignUp({ signUpSnacks, users }) {
+export default function SignUp({ users }) {
   return (
     <Container
       component="main"
@@ -20,9 +19,9 @@ export default function SignUp({ signUpSnacks, users }) {
         alignItems: 'center',
       }}
     >
-      {signUpSnacks.map((snack, index) => {
+      {/* {signUpSnacks.map((snack, index) => {
         return <MySnack key={index} snack={snack} />;
-      })}
+      })} */}
       <CssBaseline />
       <Box
         sx={{
@@ -45,13 +44,10 @@ export default function SignUp({ signUpSnacks, users }) {
 }
 
 export async function getStaticProps() {
-  const response = await fetch('http://localhost:3000/api/users/signUpSnacks');
-  const signUpSnacks = await response.json();
-  const response2 = await fetch('http://localhost:3000/api/users');
-  const users = await response2.json();
+  const response1 = await fetch('http://localhost:3000/api/users');
+  const users = await response1.json();
   return {
     props: {
-      signUpSnacks,
       users,
     },
   };

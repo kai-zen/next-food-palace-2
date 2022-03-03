@@ -23,7 +23,6 @@ const MyAppBar = ({ handleDrawerToggle }) => {
   const loggedInUser = useSelector((state) => state.users.loggedInUser);
   const cart = useSelector((state) => state.foods.cart);
   const favorites = useSelector((state) => state.foods.favorites);
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -67,11 +66,7 @@ const MyAppBar = ({ handleDrawerToggle }) => {
         </NextLink>
         <NextLink href="/favorites">
           <a>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
+            <IconButton size="large" color="inherit">
               <Badge badgeContent={favorites.length} color="error">
                 <Favorite />
               </Badge>
