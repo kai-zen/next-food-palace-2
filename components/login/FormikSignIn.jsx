@@ -12,12 +12,16 @@ import { useFormik } from 'formik';
 import Cookies from 'js-cookie';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../features/usersSlice';
+import MySnack from './MySnack';
 
 const FormikSignIn = () => {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [severity, setSeverity] = useState('error');
+  const [message, setMessage] = useState('');
   const router = useRouter();
   const validate = (values) => {
     const errors = {};
@@ -43,18 +47,30 @@ const FormikSignIn = () => {
     validate,
     onSubmit: (values, { setSubmitting }) => {
       setTimeout(async () => {
-        const response = await axios.post(
-          'http://localhost:3000/api/users/loggedInUser',
-          {
-            email: values.email,
-            password: `${values.password}`,
-          }
-        );
-        const data = response.data;
-        Cookies.set('loggedInUser', JSON.stringify(data));
-        dispatch(signIn(data));
-        router.push('/');
-        setSubmitting(false);
+        try {
+          const response = await axios.post(
+            'http://localhost:3000/api/users/loggedInUser',
+            {
+              email: values.email,
+              password: `${values.password}`,
+            }
+          );
+          const data = response.data;
+          setSeverity('success');
+          setMessage('Logged in successfully');
+          setOpen(true);
+          Cookies.set('loggedInUser', JSON.stringify(data));
+          dispatch(signIn(data));
+          setSubmitting(false);
+          router.push('/');
+        } catch (err) {
+          setSeverity('error');
+          setMessage(
+            err.response.data ? err.response.data.message : err.message
+          );
+          setOpen(true);
+          setSubmitting(false);
+        }
       }, 400);
     },
   });
@@ -114,6 +130,14 @@ const FormikSignIn = () => {
           </Link>
         </a>
       </NextLink>
+      <MySnack
+        open={open}
+        setOpen={setOpen}
+        snack={{
+          severity,
+          message,
+        }}
+      />
     </Box>
   );
 };

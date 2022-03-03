@@ -4,8 +4,6 @@ import Cookies from 'js-cookie';
 const initialState = {
     loggedInUser: Cookies.get('loggedInUser') ?
         JSON.parse(Cookies.get('loggedInUser')) : null,
-    signInSnacks: [],
-    signUpSnacks: [],
 };
 export const usersSlice = createSlice({
     name: 'users',
@@ -19,15 +17,8 @@ export const usersSlice = createSlice({
             Cookies.remove('loggedInUser');
             state.loggedInUser = null;
         },
-        emptySignInSnack: (state) => {
-            state.signInSnacks.length = 0;
-        },
-        emptySignUpSnack: (state) => {
-            state.signUpSnacks.length = 0;
-        },
     },
 });
 
 export default usersSlice.reducer;
-export const { signIn, logout, emptySignInSnack, emptySignUpSnack } =
-usersSlice.actions;
+export const { signIn, logout } = usersSlice.actions;

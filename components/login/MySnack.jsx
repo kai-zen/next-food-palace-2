@@ -1,12 +1,10 @@
 import { Close } from '@mui/icons-material';
 import { Alert, IconButton, Snackbar } from '@mui/material';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { emptySignInSnack, emptySignUpSnack } from '../../features/usersSlice';
 
-const MySnack = ({ snack }) => {
+const MySnack = ({ snack, open, setOpen }) => {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(true);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -20,7 +18,6 @@ const MySnack = ({ snack }) => {
     <Snackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={open}
-      key={snack.id}
       autoHideDuration={6000}
       onClose={handleClose}
       action={
