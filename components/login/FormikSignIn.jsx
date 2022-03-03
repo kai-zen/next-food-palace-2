@@ -9,6 +9,7 @@ import {
 import { Box } from '@mui/system';
 import axios from 'axios';
 import { useFormik } from 'formik';
+import Cookies from 'js-cookie';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -49,7 +50,9 @@ const FormikSignIn = () => {
             password: `${values.password}`,
           }
         );
-        dispatch(signIn(response.data));
+        const data = response.data;
+        Cookies.set('loggedInUser', JSON.stringify(data));
+        dispatch(signIn(data));
         router.push('/');
         setSubmitting(false);
       }, 400);

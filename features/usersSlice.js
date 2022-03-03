@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 
 const initialState = {
-    loggedInUser: {},
+    loggedInUser: Cookies.get('loggedInUser') ?
+        JSON.parse(Cookies.get('loggedInUser')) : null,
     signInSnacks: [],
     signUpSnacks: [],
 };
@@ -11,9 +13,11 @@ export const usersSlice = createSlice({
     reducers: {
         signIn: (state, payload) => {
             state.loggedInUser = payload.payload;
+
         },
         logout: (state) => {
-            state.loggedInUser = {};
+            Cookies.remove('loggedInUser');
+            state.loggedInUser = null;
         },
         emptySignInSnack: (state) => {
             state.signInSnacks.length = 0;

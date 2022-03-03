@@ -78,7 +78,7 @@ const MyAppBar = ({ handleDrawerToggle }) => {
             </IconButton>
           </a>
         </NextLink>
-        {Object.keys(loggedInUser).length !== 0 ? (
+        {loggedInUser ? (
           <>
             <IconButton
               size="large"
