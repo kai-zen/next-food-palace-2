@@ -9,11 +9,8 @@ import {
 import { Box } from '@mui/system';
 import { useFormik } from 'formik';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { editFood } from '../../../features/foodsSlice';
 
 const EditFoodFormik = ({ food, setOpen }) => {
-  const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
@@ -36,21 +33,21 @@ const EditFoodFormik = ({ food, setOpen }) => {
     validate,
     onSubmit: (values, { setSubmitting }) => {
       setTimeout(() => {
-        dispatch(
-          editFood({
-            id: food.id,
-            name: values.name,
-            price: values.price,
-            category: values.category,
-            orderQuantity: food.orderQuantity,
-            rate: food.rate,
-            isItInFav: food.isItInFav,
-            isItInCart: food.isItInCart,
-            deleted: food.deleted,
-            cartQuantity: food.cartQuantity,
-            image: food.image,
-          })
-        );
+        // dispatch(
+        //   editFood({
+        //     id: food.id,
+        //     name: values.name,
+        //     price: values.price,
+        //     category: values.category,
+        //     orderQuantity: food.orderQuantity,
+        //     rate: food.rate,
+        //     isItInFav: food.isItInFav,
+        //     isItInCart: food.isItInCart,
+        //     deleted: food.deleted,
+        //     cartQuantity: food.cartQuantity,
+        //     image: food.image,
+        //   })
+        // );
         setSubmitting(false);
         setOpen(false);
       }, 400);

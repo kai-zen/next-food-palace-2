@@ -11,10 +11,12 @@ import {
   Typography,
 } from '@mui/material';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import APSingleCommentRow from '../../components/admin-panel/APSingleCommentRow';
 
-const APComments = ({ loggedInUser, allComments }) => {
+const APComments = ({ allComments }) => {
   const router = useRouter();
+  const loggedInUser = useSelector((state) => state.users.loggedInUser);
 
   return (
     <Paper
@@ -28,7 +30,7 @@ const APComments = ({ loggedInUser, allComments }) => {
         minHeight: 'calc(100vh - 148px)',
       }}
     >
-      {loggedInUser[0] && loggedInUser[0].isAdmin ? (
+      {loggedInUser && loggedInUser.isAdmin ? (
         <>
           <Typography variant="h3" sx={{ mb: '20px' }}>
             <IconButton
@@ -72,5 +74,15 @@ const APComments = ({ loggedInUser, allComments }) => {
     </Paper>
   );
 };
+
+export async function getStaticProps() {
+  const response = await fetch('http://localhost:3000/api/comments');
+  const allComments = await response.json();
+  return {
+    props: {
+      allComments,
+    },
+  };
+}
 
 export default APComments;

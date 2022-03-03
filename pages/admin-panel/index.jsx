@@ -1,7 +1,9 @@
 import { Button, Paper, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
-const MainPanel = ({ loggedInUser }) => {
+const MainPanel = () => {
+  const loggedInUser = useSelector((state) => state.users.loggedInUser);
   const router = useRouter();
   return (
     <Paper
@@ -15,21 +17,22 @@ const MainPanel = ({ loggedInUser }) => {
         minHeight: 'calc(100vh - 148px)',
       }}
     >
-      {loggedInUser[0] && loggedInUser[0].isAdmin ? (
+      {loggedInUser && loggedInUser.isAdmin ? (
         <>
           <Typography variant="h3">
-            Welcome to admin panel {loggedInUser[0].firstName}
+            Welcome to admin panel {loggedInUser.firstName}
           </Typography>
           <Button
             variant="contained"
-            sx={{ mt: '80px' }}
+            sx={{ mt: '60px' }}
             onClick={() => {
               router.push('/admin-panel/foods');
             }}
+            color="primary"
             fullWidth
             size="large"
           >
-            Edit foods
+            Edit Foods
           </Button>
           <Button
             variant="contained"

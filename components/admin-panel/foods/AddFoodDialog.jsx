@@ -1,7 +1,7 @@
 import { Dialog, DialogContent } from '@mui/material';
 import AddFoodFormik from './AddFoodFormik';
 
-const AddFoodDialog = ({ open, setOpen }) => {
+const AddFoodDialog = ({ open, setOpen, allFoods }) => {
   return (
     <Dialog
       onClose={() => {
@@ -10,7 +10,7 @@ const AddFoodDialog = ({ open, setOpen }) => {
       open={open}
     >
       <DialogContent>
-        <AddFoodFormik setOpen={setOpen} />
+        <AddFoodFormik setOpen={setOpen} allFoods={allFoods} />
       </DialogContent>
     </Dialog>
   );

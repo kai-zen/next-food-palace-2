@@ -12,10 +12,12 @@ import {
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react';
-import APSingleUserRow from './APSingleUserRow';
+import { useSelector } from 'react-redux';
+import APSingleUserRow from '../../components/admin-panel/APSingleUserRow';
 
-const APUsers = ({ allUsers, loggedInUser }) => {
+const APUsers = ({ allUsers }) => {
   const router = useRouter();
+  const loggedInUser = useSelector((state) => state.users.loggedInUser);
 
   return (
     <Paper
@@ -29,7 +31,7 @@ const APUsers = ({ allUsers, loggedInUser }) => {
         minHeight: 'calc(100vh - 148px)',
       }}
     >
-      {loggedInUser[0] && loggedInUser[0].isAdmin ? (
+      {loggedInUser && loggedInUser.isAdmin ? (
         <>
           <Typography variant="h3" sx={{ mb: '20px' }}>
             <IconButton
@@ -72,5 +74,15 @@ const APUsers = ({ allUsers, loggedInUser }) => {
     </Paper>
   );
 };
+
+export async function getStaticProps() {
+  const response = await fetch('http://localhost:3000/api/users');
+  const allUsers = await response.json();
+  return {
+    props: {
+      allUsers,
+    },
+  };
+}
 
 export default APUsers;

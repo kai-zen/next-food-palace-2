@@ -13,13 +13,15 @@ import {
 import { amber } from '@mui/material/colors';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import SearchInput from '../../tabs/serach-tab/SearchInput';
+import SearchInput from '../../components/tabs/serach-tab/SearchInput';
 import AddFoodDialog from '../../components/admin-panel/foods/AddFoodDialog';
 import APSingleFoodRow from '../../components/admin-panel/foods/APSingleFoodRow';
 import EditFoodDialog from '../../components/admin-panel/foods/EditFoodDialog';
+import { useSelector } from 'react-redux';
 
-const APFoods = ({ loggedInUser, allFoods }) => {
+const APFoods = ({ allFoods }) => {
   const router = useRouter();
+  const loggedInUser = useSelector((state) => state.users.loggedInUser);
   const [filteredFoods, setFilteredFoods] = useState(allFoods);
   const [open, setOpen] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
@@ -40,7 +42,7 @@ const APFoods = ({ loggedInUser, allFoods }) => {
         minHeight: 'calc(100vh - 148px)',
       }}
     >
-      {loggedInUser[0] && loggedInUser[0].isAdmin ? (
+      {loggedInUser && loggedInUser.isAdmin ? (
         <>
           <Typography variant="h3" sx={{ mb: '20px' }}>
             <IconButton
@@ -91,7 +93,11 @@ const APFoods = ({ loggedInUser, allFoods }) => {
               })}
             </TableBody>
           </Table>
-          <AddFoodDialog setOpen={setOpenAdd} open={openAdd} />
+          <AddFoodDialog
+            setOpen={setOpenAdd}
+            open={openAdd}
+            allFoods={allFoods}
+          />
           <EditFoodDialog setOpen={setOpen} open={open} food={editingFood} />
         </>
       ) : (
@@ -107,5 +113,15 @@ const APFoods = ({ loggedInUser, allFoods }) => {
     </Paper>
   );
 };
+
+export async function getStaticProps() {
+  const response = await fetch('http://localhost:3000/api/foods');
+  const allFoods = await response.json();
+  return {
+    props: {
+      allFoods,
+    },
+  };
+}
 
 export default APFoods;

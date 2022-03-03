@@ -1,11 +1,8 @@
 import { Delete, Person } from '@mui/icons-material';
 import { IconButton, TableCell, TableRow } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleAdminUser, toggleDeleteUser } from '../../features/usersSlice';
 
 const APSingleUserRow = ({ user }) => {
-  const dispatch = useDispatch();
   const [deleteColor, setDeleteColor] = useState(
     user.isDeleted ? 'error' : 'action'
   );
@@ -42,7 +39,6 @@ const APSingleUserRow = ({ user }) => {
         <IconButton
           onClick={() => {
             adminColorToggler();
-            dispatch(toggleAdminUser(user));
           }}
         >
           <Person color={adminColor} />
@@ -52,7 +48,6 @@ const APSingleUserRow = ({ user }) => {
         <IconButton
           onClick={() => {
             deleteColorToggler();
-            dispatch(toggleDeleteUser(user));
           }}
         >
           <Delete color={deleteColor} />

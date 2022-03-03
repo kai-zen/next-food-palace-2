@@ -10,14 +10,8 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useFormik } from 'formik';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { addFood } from '../../../features/foodsSlice';
 
-const AddFoodFormik = ({ setOpen }) => {
-  const dispatch = useDispatch();
-  const allFoods = useSelector((state) => state.foods.allFoods);
+const AddFoodFormik = ({ setOpen, allFoods }) => {
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
@@ -40,22 +34,22 @@ const AddFoodFormik = ({ setOpen }) => {
     validate,
     onSubmit: (values, { setSubmitting }) => {
       setTimeout(() => {
-        let photo = localStorage.getItem('uploadedImage');
-        dispatch(
-          addFood({
-            id: allFoods.length,
-            name: values.name,
-            price: Number(values.price),
-            category: values.category,
-            orderQuantity: 0,
-            rate: 0,
-            isItInFav: false,
-            isItInCart: false,
-            deleted: false,
-            cartQuantity: 1,
-            image: photo,
-          })
-        );
+        // let photo = localStorage.getItem('uploadedImage');
+        // dispatch(
+        //   addFood({
+        //     id: allFoods.length,
+        //     name: values.name,
+        //     price: Number(values.price),
+        //     category: values.category,
+        //     orderQuantity: 0,
+        //     rate: 0,
+        //     isItInFav: false,
+        //     isItInCart: false,
+        //     deleted: false,
+        //     cartQuantity: 1,
+        //     image: photo,
+        //   })
+        // );
         setSubmitting(false);
         setOpen(false);
       }, 400);
