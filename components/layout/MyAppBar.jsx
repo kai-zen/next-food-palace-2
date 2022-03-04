@@ -13,7 +13,7 @@ import {
   Typography,
 } from '@mui/material';
 import NextLink from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UserInfoDialog } from './UserInfoDialog';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
@@ -21,9 +21,16 @@ import { useSelector } from 'react-redux';
 const MyAppBar = ({ handleDrawerToggle }) => {
   const router = useRouter();
   const loggedInUser = useSelector((state) => state.users.loggedInUser);
+  const [favLength, setFavLength] = useState(0);
+  const [cartLength, setCartLength] = useState(0);
   const cart = useSelector((state) => state.foods.cart);
   const favorites = useSelector((state) => state.foods.favorites);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setFavLength(favorites.length);
+    setCartLength(cart.length);
+  }, [favorites, cart]);
 
   return (
     <AppBar
@@ -58,7 +65,7 @@ const MyAppBar = ({ handleDrawerToggle }) => {
               aria-label="show 4 new mails"
               color="inherit"
             >
-              <Badge badgeContent={cart.length} color="error">
+              <Badge badgeContent={cartLength} color="error">
                 <ShoppingCart />
               </Badge>
             </IconButton>
@@ -67,7 +74,7 @@ const MyAppBar = ({ handleDrawerToggle }) => {
         <NextLink href="/favorites">
           <a>
             <IconButton size="large" color="inherit">
-              <Badge badgeContent={favorites.length} color="error">
+              <Badge badgeContent={favLength} color="error">
                 <Favorite />
               </Badge>
             </IconButton>

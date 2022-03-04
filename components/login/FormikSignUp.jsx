@@ -3,9 +3,13 @@ import { Box } from '@mui/system';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import NextLink from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import MySnack from './MySnack';
 
 const FormikSignUp = ({ users }) => {
+  const [open, setOpen] = useState(false);
+  const [severity, setSeverity] = useState('error');
+  const [message, setMessage] = useState('');
   const validate = (values) => {
     const errors = {};
     if (!values.email) {
@@ -38,17 +42,23 @@ const FormikSignUp = ({ users }) => {
     onSubmit: (values, { setSubmitting }) => {
       setTimeout(async () => {
         try {
-          const response = await axios.post('http://localhost:3000/api/users', {
+          await axios.post('http://localhost:3000/api/users/sign-up', {
             id: users.length,
             firstName: values.firstName,
             lastName: values.lastName,
             email: values.email,
             password: values.password,
           });
-          console.log(response);
+          setSeverity('success');
+          setMessage('Signed up successfully');
+          setOpen(true);
           setSubmitting(false);
         } catch (err) {
-          alert(err.response.data ? err.response.data.message : err.message);
+          setSeverity('error');
+          setMessage(
+            err.response.data ? err.response.data.message : err.message
+          );
+          setOpen(true);
           setSubmitting(false);
         }
         setSubmitting(false);
@@ -136,6 +146,14 @@ const FormikSignUp = ({ users }) => {
           </Link>
         </a>
       </NextLink>
+      <MySnack
+        open={open}
+        setOpen={setOpen}
+        snack={{
+          severity,
+          message,
+        }}
+      />
     </Box>
   );
 };

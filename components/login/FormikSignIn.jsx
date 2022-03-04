@@ -49,7 +49,7 @@ const FormikSignIn = () => {
       setTimeout(async () => {
         try {
           const response = await axios.post(
-            'http://localhost:3000/api/users/loggedInUser',
+            'http://localhost:3000/api/users/sign-in',
             {
               email: values.email,
               password: `${values.password}`,
