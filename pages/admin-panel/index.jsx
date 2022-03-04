@@ -19,21 +19,21 @@ const MainPanel = () => {
     >
       {loggedInUser && loggedInUser.isAdmin ? (
         <>
-          <Typography variant="h3">
-            Because of using database and permanent affects, I did not implement
-            admin panel functions.
+          <Typography variant="h4" sx={{ textAlign: 'center' }}>
+            Because of permanent affects on data, I did not implement admin
+            panel functions, those are available on react version of this site.
           </Typography>
           <Button
             variant="contained"
             sx={{ mt: '60px' }}
             onClick={() => {
-              router.push('/admin-panel/foods');
+              router.push('/');
             }}
             color="primary"
             fullWidth
             size="large"
           >
-            Edit Foods
+            Go back home
           </Button>
         </>
       ) : (
