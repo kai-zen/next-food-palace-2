@@ -75,7 +75,7 @@ const APComments = ({ allComments }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await fetch('http://localhost:3000/api/comments');
   const allComments = await response.json();
   return {

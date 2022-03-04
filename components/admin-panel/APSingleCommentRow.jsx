@@ -1,5 +1,6 @@
 import { Delete } from '@mui/icons-material';
 import { IconButton, TableCell, TableRow } from '@mui/material';
+import axios from 'axios';
 import { useState } from 'react';
 
 const APSingleCommentRow = ({ comment }) => {
@@ -28,8 +29,9 @@ const APSingleCommentRow = ({ comment }) => {
       <TableCell align="center">{comment.body}</TableCell>
       <TableCell align="center">
         <IconButton
-          onClick={() => {
+          onClick={async () => {
             deleteColorToggler();
+            await axios(`/api/comments/${comment.id}`);
           }}
         >
           <Delete color={deleteColor} />

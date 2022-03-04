@@ -74,7 +74,7 @@ const APUsers = ({ allUsers }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const response = await fetch('http://localhost:3000/api/users');
   const allUsers = await response.json();
   return {

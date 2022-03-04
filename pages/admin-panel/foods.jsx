@@ -114,7 +114,7 @@ const APFoods = ({ allFoods }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await fetch('http://localhost:3000/api/foods');
   const allFoods = await response.json();
   return {

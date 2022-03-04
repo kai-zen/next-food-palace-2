@@ -6,36 +6,34 @@ import {
   TextField,
 } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addComment } from '../../features/commentsSlice';
+import { useState } from 'react';
+// import { useSelector } from 'react-redux';
 
 const AddCommentDialog = ({
   open,
   setOpen,
-  foodId,
-  chip,
+  // foodId,
+  // chip,
   setOpenSnack,
-  loggedInUser,
-  comments,
+  // comments,
 }) => {
-  const dispatch = useDispatch();
+  // const loggedInUser = useSelector((state) => state.users.loggedInUser);
   const [rateInForm, setRateInForm] = useState(0);
   const [body, setBody] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
     setOpen(false);
-    dispatch(
-      addComment({
-        id: comments.length,
-        foodId,
-        author: loggedInUser[0].firstName,
-        body: body,
-        chip,
-        rate: rateInForm,
-        isDeleted: false,
-      })
-    );
+    // dispatch(
+    //   addComment({
+    //     id: comments.length,
+    //     foodId,
+    //     author: loggedInUser[0].firstName,
+    //     body: body,
+    //     chip,
+    //     rate: rateInForm,
+    //     isDeleted: false,
+    //   })
+    // );
     setOpenSnack(true);
   };
   return (

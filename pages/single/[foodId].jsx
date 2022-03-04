@@ -16,10 +16,11 @@ import AddCommentDialog from '../../components/single-food/AddCommentDialog';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-const SingleFoodPage = ({ food, thisFoodComments, loggedInUser, comments }) => {
+const SingleFoodPage = ({ food, thisFoodComments, comments }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.foods.favorites);
+  const loggedInUser = useSelector((state) => state.users.loggedInUser);
   const cart = useSelector((state) => state.foods.cart);
   const [heartColor, setHeartColor] = useState(
     favorites.find((f) => f.id === food.id) ? 'error' : 'action'
@@ -116,7 +117,7 @@ const SingleFoodPage = ({ food, thisFoodComments, loggedInUser, comments }) => {
           variant="contained"
           color="secondary"
           onClick={() => {
-            if (loggedInUser[0]) {
+            if (loggedInUser) {
               setOpen(true);
             } else {
               router.push('/sign-in');
@@ -131,7 +132,6 @@ const SingleFoodPage = ({ food, thisFoodComments, loggedInUser, comments }) => {
           open={open}
           foodId={food.id}
           chip={food.name}
-          loggedInUser={loggedInUser}
           comments={comments}
         />
       </div>
@@ -192,19 +192,15 @@ export async function getStaticProps({ params }) {
     `http://localhost:3000/api/foods/${params.foodId}`
   );
   const food = await response1.json();
-  const response2 = await fetch(
-    `http://localhost:3000/api/comments/${params.foodId}`
-  );
-  const thisFoodComments = await response2.json();
-  const response3 = await fetch('http://localhost:3000/api/foods');
-  const loggedInUser = await response3.json();
   const response4 = await fetch('http://localhost:3000/api/comments');
   const comments = await response4.json();
+  const thisFoodComments = [...comments].filter((c) => {
+    return c.foodId === params.foodId;
+  });
   return {
     props: {
       food,
       thisFoodComments,
-      loggedInUser,
       comments,
     },
   };
