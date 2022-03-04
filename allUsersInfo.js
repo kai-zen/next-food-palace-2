@@ -8,4 +8,12 @@ export const allUsersInfo = [{
     password: bcrypt.hashSync('12345678'),
     isAdmin: true,
     isDeleted: false
+}, {
+    id: 1,
+    firstName: "Mah",
+    lastName: "Tayebi",
+    email: "mah@mah.com",
+    password: bcrypt.hashSync('12345678'),
+    isAdmin: true,
+    isDeleted: false
 }]

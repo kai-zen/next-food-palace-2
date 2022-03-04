@@ -59,7 +59,10 @@ const FormikSignIn = () => {
           setSeverity('success');
           setMessage('Logged in successfully');
           setOpen(true);
-          Cookies.set('loggedInUser', JSON.stringify(data));
+          alert(values.remember);
+          if (values.remember) {
+            Cookies.set('loggedInUser', JSON.stringify(data));
+          }
           dispatch(signIn(data));
           setSubmitting(false);
           router.push('/');
@@ -110,7 +113,14 @@ const FormikSignIn = () => {
         helperText={formik.touched.password && formik.errors.password}
       />
       <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
+        control={
+          <Checkbox
+            value={formik.values.remember}
+            onChange={formik.handleChange}
+            name="remember"
+            color="primary"
+          />
+        }
         label="Remember me"
       />
       <Button
