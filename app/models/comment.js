@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const commentSchema = new mongoose.Schema({
     id: { type: Number, required: true, unique: true },
-    foodId: { type: String, required: true, unique: true },
+    foodId: { type: String, required: true, unique: false },
     author: { type: String, required: true },
     body: { type: String, required: true },
     chip: { type: String, required: true },

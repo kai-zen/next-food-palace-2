@@ -6,34 +6,32 @@ import {
   TextField,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import axios from 'axios';
 import { useState } from 'react';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const AddCommentDialog = ({
   open,
   setOpen,
-  // foodId,
-  // chip,
+  foodId,
+  chip,
   setOpenSnack,
-  // comments,
+  comments,
 }) => {
-  // const loggedInUser = useSelector((state) => state.users.loggedInUser);
+  const loggedInUser = useSelector((state) => state.users.loggedInUser);
   const [rateInForm, setRateInForm] = useState(0);
   const [body, setBody] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
     setOpen(false);
-    // dispatch(
-    //   addComment({
-    //     id: comments.length,
-    //     foodId,
-    //     author: loggedInUser[0].firstName,
-    //     body: body,
-    //     chip,
-    //     rate: rateInForm,
-    //     isDeleted: false,
-    //   })
-    // );
+    axios.post('/api/comments/add-comment', {
+      id: comments.length,
+      foodId,
+      author: loggedInUser.firstName,
+      body: body,
+      chip,
+      rate: rateInForm,
+    });
     setOpenSnack(true);
   };
   return (

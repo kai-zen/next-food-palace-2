@@ -203,6 +203,7 @@ export async function getStaticProps({ params }) {
       thisFoodComments,
       comments,
     },
+    revalidate: 10,
   };
 }
 

@@ -20,7 +20,8 @@ const MainPanel = () => {
       {loggedInUser && loggedInUser.isAdmin ? (
         <>
           <Typography variant="h3">
-            Welcome to admin panel {loggedInUser.firstName}
+            Because of using database and permanent affects, I did not implement
+            admin panel functions.
           </Typography>
           <Button
             variant="contained"
@@ -33,29 +34,6 @@ const MainPanel = () => {
             size="large"
           >
             Edit Foods
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ mt: '20px' }}
-            onClick={() => {
-              router.push('/admin-panel/users');
-            }}
-            color="secondary"
-            fullWidth
-            size="large"
-          >
-            Edit users
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ mt: '20px' }}
-            onClick={() => {
-              router.push('/admin-panel/comments');
-            }}
-            fullWidth
-            size="large"
-          >
-            Edit comments
           </Button>
         </>
       ) : (
