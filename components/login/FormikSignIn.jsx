@@ -59,7 +59,6 @@ const FormikSignIn = () => {
           setSeverity('success');
           setMessage('Logged in successfully');
           setOpen(true);
-          alert(values.remember);
           if (values.remember) {
             Cookies.set('loggedInUser', JSON.stringify(data));
           }

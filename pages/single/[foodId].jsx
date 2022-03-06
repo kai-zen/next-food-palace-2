@@ -7,7 +7,7 @@ import {
   Alert,
   Snackbar,
 } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SingleComment from '../../components/tabs/comments-tab/SingleComment';
 import { Close, Favorite, ShoppingCart } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +15,10 @@ import { toggleToCart, toggleToFavorites } from '../../features/foodsSlice';
 import AddCommentDialog from '../../components/single-food/AddCommentDialog';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import db from '../../app/db';
+import Comment from '../../app/models/comment';
+import Food from '../../app/models/food';
+import { allFoodsInfo } from '../../allFoodsInfo';
 
 const SingleFoodPage = ({ food, thisFoodComments, comments }) => {
   const router = useRouter();
@@ -174,8 +178,7 @@ const SingleFoodPage = ({ food, thisFoodComments, comments }) => {
 };
 
 export async function getStaticPaths() {
-  const response = await fetch('http://localhost:3000/api/foods');
-  const allFoods = await response.json();
+  const allFoods = allFoodsInfo;
   const paths = allFoods.map((food) => {
     return {
       params: { foodId: `${food.id}` },
@@ -187,15 +190,17 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const response1 = await fetch(
-    `http://localhost:3000/api/foods/${params.foodId}`
-  );
-  const food = await response1.json();
-  const response4 = await fetch('http://localhost:3000/api/comments');
-  const comments = await response4.json();
+export async function getStaticProps(context) {
+  const { params } = context;
+  const { foodId } = params;
+  await db.connect();
+  let food = await Food.findOne({ id: foodId });
+  let comments = await Comment.find({}).lean();
+  food = JSON.parse(JSON.stringify(food));
+  comments = JSON.parse(JSON.stringify(comments));
+  await db.disconnect();
   const thisFoodComments = [...comments].filter((c) => {
-    return c.foodId === params.foodId;
+    return c.foodId === foodId;
   });
   return {
     props: {

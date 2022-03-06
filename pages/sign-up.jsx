@@ -19,9 +19,6 @@ export default function SignUp({ users }) {
         alignItems: 'center',
       }}
     >
-      {/* {signUpSnacks.map((snack, index) => {
-        return <MySnack key={index} snack={snack} />;
-      })} */}
       <CssBaseline />
       <Box
         sx={{
