@@ -42,7 +42,7 @@ const FormikSignUp = ({ users }) => {
     onSubmit: (values, { setSubmitting }) => {
       setTimeout(async () => {
         try {
-          await axios.post('http://localhost:3000/api/users/sign-up', {
+          await axios.post('/api/users/sign-up', {
             id: users.length,
             firstName: values.firstName,
             lastName: values.lastName,

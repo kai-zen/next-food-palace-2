@@ -5,6 +5,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import FormikSignUp from '../components/login/FormikSignUp';
+import db from '../app/db';
+import User from '../app/models/user';
 
 export default function SignUp({ users }) {
   return (
@@ -41,8 +43,10 @@ export default function SignUp({ users }) {
 }
 
 export async function getStaticProps() {
-  const response1 = await fetch('http://localhost:3000/api/users');
-  const users = await response1.json();
+  await db.connect();
+  let users = await User.find({}).lean();
+  users = JSON.parse(JSON.stringify(users));
+  await db.disconnect();
   return {
     props: {
       users,

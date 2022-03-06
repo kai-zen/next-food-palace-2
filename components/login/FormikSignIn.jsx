@@ -48,13 +48,10 @@ const FormikSignIn = () => {
     onSubmit: (values, { setSubmitting }) => {
       setTimeout(async () => {
         try {
-          const response = await axios.post(
-            'http://localhost:3000/api/users/sign-in',
-            {
-              email: values.email,
-              password: `${values.password}`,
-            }
-          );
+          const response = await axios.post('/api/users/sign-in', {
+            email: values.email,
+            password: `${values.password}`,
+          });
           const data = response.data;
           setSeverity('success');
           setMessage('Logged in successfully');

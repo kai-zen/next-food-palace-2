@@ -1,4 +1,6 @@
 import { allFoodsInfo } from '../allFoodsInfo';
+import db from '../app/db';
+import Comment from '../app/models/comment';
 import MyTabs from '../components/tabs/MyTabs';
 
 function Home({ comments }) {
@@ -7,8 +9,10 @@ function Home({ comments }) {
 }
 
 export async function getServerSideProps() {
-  const response2 = await fetch('http://localhost:3000/api/comments');
-  const comments = await response2.json();
+  await db.connect();
+  let comments = await Comment.find({}).lean();
+  comments = JSON.parse(JSON.stringify(comments));
+  await db.disconnect();
   return {
     props: {
       comments,
