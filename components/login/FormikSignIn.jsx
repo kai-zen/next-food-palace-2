@@ -6,6 +6,7 @@ import {
   TextField,
   LinearProgress,
 } from '@mui/material';
+import jwt from 'jsonwebtoken';
 import { Box } from '@mui/system';
 import axios from 'axios';
 import { useFormik } from 'formik';
@@ -57,9 +58,9 @@ const FormikSignIn = () => {
           setMessage('Logged in successfully');
           setOpen(true);
           if (values.remember) {
-            Cookies.set('loggedInUser', JSON.stringify(data));
+            Cookies.set('authToken', JSON.stringify(data.token));
           }
-          dispatch(signIn(data));
+          dispatch(signIn(jwt.decode(data.token)));
           setSubmitting(false);
           router.push('/');
         } catch (err) {

@@ -13,14 +13,7 @@ handler.post(async(req, res) => {
     if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
             const token = signToken(user);
-            res.send({
-                token,
-                id: user.id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                isAdmin: user.isAdmin,
-            });
+            res.send({ token });
         } else {
             res.status(401).send({ message: 'Wrong password' });
         }

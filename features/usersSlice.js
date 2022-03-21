@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken'
 
 const initialState = {
-    loggedInUser: Cookies.get('loggedInUser') ?
-        JSON.parse(Cookies.get('loggedInUser')) : null,
+    loggedInUser: Cookies.get('authToken') ?
+        jwt.decode(JSON.parse(Cookies.get('authToken'))) : null,
 };
 export const usersSlice = createSlice({
     name: 'users',
